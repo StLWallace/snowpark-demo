@@ -1,6 +1,6 @@
-from snowflake.snowpark import Session, Table, DataFrame
+from snowflake.snowpark import Session, DataFrame
 from snowflake.snowpark import functions as F
-from libs.utils import get_connection_params
+from libs.utils import get_connection_params, insert_overwrite
 
 
 CONF_PATH = "../conf/snowflake_conn.yml"
@@ -11,12 +11,19 @@ SOURCE_TABLE_NAME = "SDOH_SAMPLE"
 TARGET_DB_NAME = "TEST_DB"
 TARGET_SCHEMA_NAME = "SNOWPARK_DEMO"
 
+PARTITION_COL = "loaded_date"
+PARTITION_VAL = "20240102"
+
 
 def transform_source_table(source_table: DataFrame) -> DataFrame:
     """A basic transformation to test this out"""
-    agg_table = source_table.group_by(F.col("AIQ_INDID")).agg(
-        F.mean("AIQ_HOME_AGE").alias("mean_home_age"),
-        F.mean("HOMEVALUEIQ").alias("mean_home_value_iq"),
+    agg_table = (
+        source_table.group_by(F.col("AIQ_INDID"))
+        .agg(
+            F.mean("AIQ_HOME_AGE").alias("mean_home_age"),
+            F.mean("HOMEVALUEIQ").alias("mean_home_value_iq"),
+        )
+        .with_column(PARTITION_COL, F.lit(PARTITION_VAL))
     )
 
     return agg_table
@@ -30,7 +37,17 @@ def main(session: Session):
 
     agg_table = transform_source_table(source_table=sdoh_sample)
 
-    agg_table.write.mode("overwrite").save_as_table(target_table_fullname)
+    """
+    agg_table.write.mode("overwrite").save_as_table(
+        target_table_fullname, clustering_keys=["loaded_date"]
+    )"""
+    insert_overwrite(
+        session=session,
+        target_table_name=target_table_fullname,
+        new_data=agg_table,
+        partition_col=PARTITION_COL,
+        partition_val=PARTITION_VAL,
+    )
 
 
 if __name__ == "__main__":
