@@ -9,3 +9,13 @@ repos:
     rev: 22.10.0
     hooks:
     -   id: black
+-   repo: local
+    hooks:
+    -   id: terraform-fmt
+        name: terraform-fmt
+        entry: ./scripts/format.sh
+        language: script
+    -   id: terraform-dox
+        name: terraform-dox
+        entry: ./scripts/docs.sh
+        language: script

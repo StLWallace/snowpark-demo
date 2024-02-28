@@ -1,7 +1,6 @@
-from snowflake.snowpark import Session, DataFrame
-from snowflake.snowpark import functions as F
+from snowflake.snowpark import Session
 from libs.utils import get_connection_params, insert_overwrite
-from tables.sdoh_agg import SdohAgg
+from tables.sdoh_agg import SdohAgg, SdohSemantic
 
 
 CONF_PATH = "../conf/snowflake_conn.yml"
@@ -16,7 +15,7 @@ PARTITION_COL = "loaded_date"
 PARTITION_VAL = "20240102"
 
 
-def main(session: Session):
+def process(session: Session):
     """Loads a source table, performs some basic transformations, then writes to a table
 
     If the target table doesn't exist, it will create it.
@@ -26,6 +25,7 @@ def main(session: Session):
     sdoh_sample = session.table(source_table_fullname)
 
     sdoh_agg = SdohAgg(session=session, sdoh_sample=sdoh_sample)
+    sdoh_semantic = SdohSemantic(session=session, sdoh_agg=sdoh_agg)
 
     insert_overwrite(
         session=session,
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         connection_params.model_dump(exclude_none=True, by_alias=True)
     ).create()
 
-    main(session=session)
+    process(session=session)
