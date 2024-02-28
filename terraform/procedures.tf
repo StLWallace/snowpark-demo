@@ -1,5 +1,5 @@
 locals {
-  full_stage_name = "@${data.snowflake_database.test.name}.${var.schema_name}.${var.libaries_stage_name}"
+  full_stage_name = "@${data.snowflake_database.test.name}.${var.schema_name}.${var.libraries_stage_name}"
 }
 
 # Zip source code and upload it to stage

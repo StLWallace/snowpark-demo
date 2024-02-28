@@ -8,7 +8,7 @@ variable "schema_name" {
   type        = string
 }
 
-variable "libaries_stage_name" {
+variable "libraries_stage_name" {
   description = "Internal stage that stores custom Python libraries"
   type        = string
 }

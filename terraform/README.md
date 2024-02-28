@@ -27,7 +27,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment where resources will be deployed | `string` | n/a | yes |
-| <a name="input_libaries_stage_name"></a> [libaries\_stage\_name](#input\_libaries\_stage\_name) | Internal stage that stores custom Python libraries | `string` | n/a | yes |
+| <a name="input_libraries_stage_name"></a> [libraries\_stage\_name](#input\_libraries\_stage\_name) | Internal stage that stores custom Python libraries | `string` | n/a | yes |
 | <a name="input_schema_name"></a> [schema\_name](#input\_schema\_name) | Name of target schema where stuff lives. | `string` | n/a | yes |
 
 ## Outputs
