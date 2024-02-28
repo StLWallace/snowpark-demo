@@ -12,3 +12,13 @@ variable "libraries_stage_name" {
   description = "Internal stage that stores custom Python libraries"
   type        = string
 }
+
+variable "account" {
+  description = "Snowflake account name"
+  type        = string
+}
+
+variable "authenticator" {
+  description = "If using SAML, value should be 'externalbrowser'"
+  type        = string
+}

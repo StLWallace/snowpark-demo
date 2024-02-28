@@ -14,7 +14,6 @@ resource "snowflake_procedure" "sdoh" {
   comment             = "Demo data process using sdoh data."
   return_type         = "VARCHAR"
   execute_as          = "CALLER"
-  return_behavior     = "IMMUTABLE"
   null_input_behavior = "RETURNS NULL ON NULL INPUT"
   handler             = "process"
   imports             = ["${local.full_stage_name}/snowpark-demo/jobs.zip"]

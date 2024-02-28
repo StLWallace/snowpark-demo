@@ -8,5 +8,6 @@ terraform {
 }
 
 provider "snowflake" {
-  profile = "default"
+  account       = var.account
+  authenticator = var.authenticator
 }

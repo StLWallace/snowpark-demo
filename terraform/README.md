@@ -26,6 +26,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_account"></a> [account](#input\_account) | Snowflake account name | `string` | n/a | yes |
+| <a name="input_authenticator"></a> [authenticator](#input\_authenticator) | If using SAML, value should be 'externalbrowser' | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment where resources will be deployed | `string` | n/a | yes |
 | <a name="input_libraries_stage_name"></a> [libraries\_stage\_name](#input\_libraries\_stage\_name) | Internal stage that stores custom Python libraries | `string` | n/a | yes |
 | <a name="input_schema_name"></a> [schema\_name](#input\_schema\_name) | Name of target schema where stuff lives. | `string` | n/a | yes |
