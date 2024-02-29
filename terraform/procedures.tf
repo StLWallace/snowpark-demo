@@ -15,9 +15,16 @@ resource "snowflake_procedure" "sdoh" {
   return_type         = "VARCHAR"
   execute_as          = "CALLER"
   null_input_behavior = "RETURNS NULL ON NULL INPUT"
-  handler             = "process"
+  handler             = "main"
+  packages            = ["pydantic"]
   imports             = ["${local.full_stage_name}/snowpark-demo/jobs.zip"]
   statement           = <<EOT
-  from jobs.main import process
+import snowflake.snowpark as snowpark
+from snowpark_demo.main import process
+
+
+def main(session: snowpark.Session):
+    process(session=session)
+    return "This worked"
 EOT
 }
