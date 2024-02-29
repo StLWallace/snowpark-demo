@@ -17,7 +17,7 @@ resource "snowflake_procedure" "sdoh" {
   null_input_behavior = "RETURNS NULL ON NULL INPUT"
   handler             = "main"
   packages            = ["pydantic"]
-  imports             = ["${local.full_stage_name}/snowpark-demo/jobs.zip"]
+  imports             = ["${local.full_stage_name}/snowpark_demo.zip"]
   statement           = <<EOT
 import snowflake.snowpark as snowpark
 from snowpark_demo.main import process
