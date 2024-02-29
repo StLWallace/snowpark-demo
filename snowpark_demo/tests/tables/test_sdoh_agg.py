@@ -1,4 +1,4 @@
-from jobs.tables.sdoh_agg import SdohAgg
+from snowpark_demo.tables.sdoh_agg import SdohAgg
 
 
 class TestSdohAgg:

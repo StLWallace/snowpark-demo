@@ -1,4 +1,4 @@
-from jobs.libs.utils import get_connection_params
+from snowpark_demo.libs.utils import get_connection_params
 
 
 def test_get_connection_params(jobs_dir):
