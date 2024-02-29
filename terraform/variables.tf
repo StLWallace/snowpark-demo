@@ -22,3 +22,13 @@ variable "authenticator" {
   description = "If using SAML, value should be 'externalbrowser'"
   type        = string
 }
+
+variable "private_key" {
+  description = "Snowflake private key value"
+  type        = string
+}
+
+variable "user" {
+  description = "Snowflake username"
+  type        = string
+}

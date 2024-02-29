@@ -1,6 +1,6 @@
 from snowflake.snowpark import Session
-from libs.utils import get_connection_params, insert_overwrite
-from tables.sdoh_agg import SdohAgg, SdohSemantic
+from .libs.utils import get_connection_params, insert_overwrite
+from .tables.sdoh_agg import SdohAgg, SdohSemantic
 
 
 CONF_PATH = "../conf/snowflake_conn.yml"

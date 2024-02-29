@@ -6,13 +6,13 @@
 # - DB_NAME: name of Snowflake database containing stage
 # - SCHEMA_NAME: name of Snowflake schema containing stage
 # - STAGE_NAME: name of stage to upload files
-LIBS_PATH=jobs/libs
+PKG_DIR=jobs
 DB_NAME=TEST_DB
 SCHEMA_NAME=SNOWPARK_DEMO
 STAGE_NAME=PYTHON_LIBS
 
-zip libs.zip $LIBS_PATH
+zip -r jobs.zip $PKG_DIR
 
-snow sql --query "put file://./libs.zip '@$DB_NAME.$SCHEMA_NAME.$STAGE_NAME/' OVERWRITE=TRUE"
+snow sql --query "put file://./jobs.zip '@$DB_NAME.$SCHEMA_NAME.$STAGE_NAME/snowpark_demo' OVERWRITE=TRUE"
 
-rm libs.zip
+rm jobs.zip

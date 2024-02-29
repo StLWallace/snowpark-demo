@@ -10,4 +10,6 @@ terraform {
 provider "snowflake" {
   account       = var.account
   authenticator = var.authenticator
+  private_key   = var.private_key
+  user          = var.user
 }

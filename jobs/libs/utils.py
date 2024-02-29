@@ -1,5 +1,5 @@
 import yaml
-from models.snowflake import SnowflakeConnectionParameters
+from ..models.snowflake import SnowflakeConnectionParameters
 from snowflake.snowpark import Session, DataFrame
 from snowflake.snowpark.exceptions import SnowparkSQLException
 import logging
